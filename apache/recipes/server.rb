@@ -12,7 +12,11 @@ end
 
 file '/var/www/html/index.html' do
   # the default action is :create
-  content '<h1>Hello, world!</h1>'	
+  # using data collected by ohai at runtime for ipaddress and hostname
+  content "<h1>Hello, world!</h1>
+  ipaddress: #{node['ipaddress']}
+  hostname: #{node['hostname']}
+"
 end
 
 service 'httpd' do
