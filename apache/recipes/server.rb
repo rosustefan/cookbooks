@@ -10,13 +10,18 @@ package 'httpd' do
   action :install
 end
 
-file '/var/www/html/index.html' do
+# file '/var/www/html/index.html' do
   # the default action is :create
   # using data collected by ohai at runtime for ipaddress and hostname
-  content "<h1>Hello, world!</h1>
-  ipaddress: #{node['ipaddress']}
-  hostname: #{node['hostname']}
-"
+  # content "<h1>Hello, world!</h1>
+  # ipaddress: #{node['ipaddress']}
+  # hostname: #{node['hostname']}
+# "
+# end
+
+# replace the file resource with the template resource
+template '/var/www/html/index.html' do
+  source 'index.html.erb'
 end
 
 service 'httpd' do
